@@ -66,4 +66,15 @@ class Components_dataController extends Controller{
 		$arr = DB::select($sqltext, $query_params);
 		return $arr;
 	}
+
+	/**
+     * getcount_appointments Model Action
+     * @return Value
+     */
+	function getcount_appointments(Request $request){
+		$sqltext = "SELECT COUNT(*) AS num FROM appointments";
+		$query_params = [];
+		$val = DB::select($sqltext, $query_params);
+		return $val[0]->num;
+	}
 }

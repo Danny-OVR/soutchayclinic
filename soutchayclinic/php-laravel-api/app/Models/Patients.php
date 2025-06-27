@@ -31,63 +31,12 @@ class Patients extends Model
 	
 
 	/**
-     * Set search query for the model
-	 * @param \Illuminate\Database\Eloquent\Builder $query
-	 * @param string $text
-     */
-	public static function search($query, $text){
-		//search table record 
-		$search_condition = '(
-				patient_id LIKE ?  OR 
-				full_name LIKE ?  OR 
-				phone LIKE ?  OR 
-				email LIKE ?  OR 
-				address LIKE ? 
-		)';
-		$search_params = [
-			"%$text%","%$text%","%$text%","%$text%","%$text%"
-		];
-		//setting search conditions
-		$query->whereRaw($search_condition, $search_params);
-
-	}
-	
-
-	/**
-     * return list page fields of the model.
-     * 
-     * @return array
-     */
-	public static function listFields(){
-		return [ 
-			"patient_id", 
-			"full_name", 
-			"gender", 
-			"birth_date", 
-			"phone", 
-			"email", 
-			"address", 
-			"created_at" 
-		];
-	}
-
-	
-
-	/**
      * return exportList page fields of the model.
      * 
      * @return array
      */
 	public static function exportListFields(){
 		return [ 
-			"patient_id", 
-			"full_name", 
-			"gender", 
-			"birth_date", 
-			"phone", 
-			"email", 
-			"address", 
-			"created_at" 
 		];
 	}
 

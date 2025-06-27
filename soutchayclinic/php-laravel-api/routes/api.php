@@ -34,10 +34,6 @@ Route::get('home', 'HomeController@index');
 	Route::any('appointments/delete/{rec_id}', 'AppointmentsController@delete');
 
 /* routes for Patients Controller  */	
-	Route::get('patients/', 'PatientsController@index');
-	Route::get('patients/index', 'PatientsController@index');
-	Route::get('patients/index/{filter?}/{filtervalue?}', 'PatientsController@index');	
-	Route::post('patients/importdata', 'PatientsController@importdata');	
 	Route::get('patients/view/{rec_id}', 'PatientsController@view');	
 	Route::post('patients/add', 'PatientsController@add');	
 	Route::any('patients/edit/{rec_id}', 'PatientsController@edit');	
@@ -127,7 +123,8 @@ Route::get('home', 'HomeController@index');
 	Route::get('components_data/service_id_option_list/{arg1?}', 'Components_dataController@service_id_option_list');	
 	Route::get('components_data/staff_id_option_list/{arg1?}', 'Components_dataController@staff_id_option_list');	
 	Route::get('components_data/appointment_id_option_list/{arg1?}', 'Components_dataController@appointment_id_option_list');	
-	Route::get('components_data/role_id_option_list/{arg1?}', 'Components_dataController@role_id_option_list');
+	Route::get('components_data/role_id_option_list/{arg1?}', 'Components_dataController@role_id_option_list');	
+	Route::get('components_data/getcount_appointments/{arg1?}', 'Components_dataController@getcount_appointments');
 
 
 /* routes for FileUpload Controller  */	

@@ -54,13 +54,6 @@ let routes = [
 		
 
 //patients routes
-			{
-				path: '/patients/:fieldName?/:fieldValue?',
-				name: 'patientslist',
-				component: () => import('./pages/patients/list.vue'), 
-				props: route => passRouteToProps(route)
-			},
-	
 			{ 
 				path: '/patients/view/:id', 
 				name: 'patientsview', 

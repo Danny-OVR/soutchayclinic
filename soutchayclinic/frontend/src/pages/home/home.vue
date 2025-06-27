@@ -6,6 +6,7 @@
                     <div class=" text-xl font-bold text-primary" >
                         Home
                     </div>
+                    <RecordCount value-prefix="" value-suffix="" api-path="components_data/getcount_appointments" :link="`/appointments`"  title="Appointments" subtitle="Total Appointments"  icon="pi pi-th-large" :show-knob="false" card-class="" :max="100" ></RecordCount>
                 </div>
             </div>
         </section>

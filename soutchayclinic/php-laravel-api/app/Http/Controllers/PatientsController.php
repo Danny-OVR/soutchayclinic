@@ -11,67 +11,10 @@ use \PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PatientsListExport;
 use App\Exports\PatientsViewExport;
-use Illuminate\Support\Facades\Validator;
-
-use Illuminate\Support\Facades\Config;
 use Exception;
 
 class PatientsController extends Controller
 {
-	
-
-	/**
-     * List table records
-	 * @param  \Illuminate\Http\Request
-     * @param string $fieldname //filter records by a table field
-     * @param string $fieldvalue //filter value
-     * @return \Illuminate\View\View
-     */
-	function index(Request $request, $fieldname = null , $fieldvalue = null){
-		$query = Patients::query();
-		if($request->search){
-			$search = trim($request->search);
-			Patients::search($query, $search);
-		}
-		$orderby = $request->orderby ?? "patients.patient_id";
-		$ordertype = $request->ordertype ?? "desc";
-		$query->orderBy($orderby, $ordertype);
-		if($fieldname){
-			$query->where($fieldname , $fieldvalue); //filter by a single field name
-		}
-		// if request format is for export example:- product/index?export=pdf
-		if($this->getExportFormat()){
-			return $this->ExportList($query, $request); // export current query
-		}
-
-		$records = $this->paginate($query, Patients::listFields());
-		return $this->respond($records);
-	}
-	/**
-     * Load csv|json data
-     * @return data
-     */
-	function importdata(Request $request){
-		$importSettings = config("upload.import");
-		$maxFileSize = intval($importSettings["max_file_size"]) * 1000; //in kilobyte
-		$validator = Validator::make($request->all(), 
-			[
-				"file" => "file|required|max:$maxFileSize|mimes:csv,txt",
-			]
-		);
-		if ($validator->fails()) {
-			return $this->reject($validator->errors(), 400);
-		}
-		$csvOptions = array(
-			'fields' => '', //leave empty to use the first row as the columns
-			'delimiter' => ',', 
-			'quote' => '"'
-		);
-		$filePath = $request->file('file')->getRealPath();
-		$modeldata = $this->parse_csv_data($filePath, $csvOptions);
-		$result = Patients::insert($modeldata);
-		return $this->respond($result);
-	}
 	
 
 	/**

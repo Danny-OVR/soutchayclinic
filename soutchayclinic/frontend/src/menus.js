@@ -21,14 +21,6 @@ export function useAppMenus() {
     
   },
   {
-    "to": "/patients",
-    "label": "Patients",
-    "icon": "pi pi-th-large",
-    "iconcolor": "",
-    "target": "",
-    
-  },
-  {
     "to": "/payments",
     "label": "Payments",
     "icon": "pi pi-th-large",
